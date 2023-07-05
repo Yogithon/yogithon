@@ -19,6 +19,7 @@ from pathlib import Path
 # 다시 되나 확인 차 해볼게여...
 
 # 제발요....... 제발 성공하고 싶어요..... 5번째...프로젝트 생성...중....
+# 라스트팡
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
