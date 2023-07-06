@@ -16,7 +16,7 @@ from .exception import SocialLoginException, GithubException
 
 def main(request):
   pets = Pet.objects.all()
-  return render(request, "yogithon/main.html", {"pets": pets})
+  return render(request, "yogithon/login.html", {"pets": pets})
 
 def detail(request, pet_id):
     pet = get_object_or_404(Pet, pk = id)
