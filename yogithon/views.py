@@ -16,26 +16,35 @@ from .exception import SocialLoginException, GithubException
 
 def main(request):
   pets = Pet.objects.all()
-  return render(request, "yogithon/login.html", {"pets": pets})
+  return render(request, "yogithon/main.html", {"pets": pets})
 
-def detail(request, pet_id):
-    pet = get_object_or_404(Pet, pk = id)
-    return render(request, 'detail.html', {"pet":pet})
+def detail(request, pk):
+    pet = get_object_or_404(Pet, id=pk)
+    return render(request, 'yogithon/detail.html', {"pet":pet})
 
 def new(request) :
     return render (request,'create.html')
 
 def create(request):
-    new_pet = Pet()   # object 생성
-    new_pet.title = request.POST['title']          # 필드 값 할당
-    new_pet.p_name = request.POST['p_name']        # 필드 값 할당
-    new_pet.school = request.POST['school']            # 필드 값 할당
-    new_pet.author = request.POST['author']
-    new_pet.description = request.POST['description']
-    new_pet.image = request.POST['image']
-    # pub_date는 장고에서 제공하는 모듈을 쓸 것임.
+    # new_pet = Pet()   # object 생성
+    # new_pet.title = request.POST['title']          # 필드 값 할당
+    # new_pet.p_name = request.POST['p_name']        # 필드 값 할당
+    # new_pet.school = request.POST['school']            # 필드 값 할당
+    # new_pet.author = request.POST['author']
+    # new_pet.description = request.POST['description']
+    # new_pet.image = request.POST['image']
+    # # pub_date는 장고에서 제공하는 모듈을 쓸 것임.
+    # new_pet.save()
 
-    new_pet.save()
+    if request.method == "POST" :
+        form = PetForm(request.POST)
+        if form.is_valid():
+            pet = form.save(commit=False)
+            pet.save()
+            return redirect('detail', pk=pet.pk)
+    else :
+        form = PetForm()
+    return render(request, 'yogithon/create.html', {'form':form})
 
 def update(request, pk) :
     pet = Pet.objects.get(id=pk)
