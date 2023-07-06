@@ -5,6 +5,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 class Pet(models.Model) :
     title = models.CharField(max_length=60)
     school = models.CharField(max_length=15)
+    p_name = models.CharField(max_length=20)
     author = models.CharField(max_length=20)
     image = models.ImageField(upload_to='Images/%Y/%m/%d')
     insta_url = models.URLField(max_length=200)
