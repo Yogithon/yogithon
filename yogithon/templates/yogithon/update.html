@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    style{
+        p{
+            width: 64px;
+            height: 38px;
+            left: 130px;
+            top: 192px;
+            position: absolute;
+            color: #8B8A8A;
+            font-size: 30px;
+            font-family: IBM Plex Sans KR;
+            font-weight: 400;
+            word-wrap: break-word";
+        }
+        btn{
+            "width: 121px; height: 43px; left: 1020px; top: 695px; position: absolute; color: black; font-size: 30px; font-family: IBM Plex Sans KR; font-weight: 400; word-wrap: break-word"
+        }
+    }
+</head>
+<body>
+    <div class="MacbookAir" style="width: 1280px; height: 832px; position: relative; background-color: white;">
+        <div class="Group1" style="width: 1280px; height: 105px; left: 0px; top: 0px; position: absolute">
+            <div class="Rectangle1" style="width: 1280px; height: 105px; left: 0px; top: 0px; position: absolute; background: #FFECB3"></div>
+            <div style="left: 989px; top: 32px; position: absolute; color: #E65200; font-size: 36px; font-family: ChangwonDangamAsac; font-weight: 700; word-wrap: break-word">Petstagram</div>
+            <div style="width: 143px; height: 28px; left: 68px; top: 35px; position: absolute; color: black; font-size: 24px; font-family: IBM Plex Sans KR; font-weight: 700; word-wrap: break-word">학교 게시판</div>
+            <div style="width: 116px; height: 31px; left: 299px; top: 35px; position: absolute; color: black; font-size: 24px; font-family: IBM Plex Sans KR; font-weight: 700; word-wrap: break-word">마이페이지 </div>
+        </div>
+        <form action="{% url 'update' pk=pet.id %}" method="post">
+            {%csrf_token%}
+            <p>제목 : <input type="text" name="title" value={{pet.title}} /></p>
+            <p>반려동물 이름 : <input type="text" name="p_name" value="{{pet.p_name}}" /></p>
+            <p>학교동물 이름 : <input type="text" name="school" value="{{pet.school}}" /></p>
+            <p>글쓴이 : <input type="text" name="author" value="{{pet.author}}" /></p>
+            <p>설명 : <input type="text" name="description" value="{{pet.description}}" /></p>
+            <button type="submit" class="btn btn-primary"><a href="{% url 'update' %}"></a>수정하기</button>
+        </form>
+    </div>
+</body>
+</html>
