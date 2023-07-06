@@ -26,6 +26,21 @@ class User(AbstractBaseUser) :
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['user_id', 'user_pw']
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['user_id', 'user_pw']
+
+    LOGIN_EMAIL = "email"
+    LOGIN_GITHUB = "Github"
+
+    LOGIN_CHOICES = (
+        (LOGIN_EMAIL, "Email"),
+        (LOGIN_GITHUB, "Github"),
+    )
+
+    login_method = models.CharField(
+        max_length=6, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
+    )
+
     def __str__(self):
             return self.user_id
 

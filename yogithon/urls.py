@@ -11,4 +11,7 @@ urlpatterns = [
     path('create/', views.create, name="create"),
     path('<int:pk>/update/', views.update, name="update"),
     path('<int:pk>/delete/', views.delete, name="delete"),
+    path('login/github/', views.github_login, name='github-login'),
+    path('login/github/callback/', views.github_login_callback, name='github-callback'),
+
 ]
