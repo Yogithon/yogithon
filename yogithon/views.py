@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from .forms import PetForm
 
-from allauth.accout.views import login
+from allauth.account.views import login
 from django.contrib import messages
 from django.contrib.sites import requests
 from django.core.files.base import ContentFile
@@ -16,7 +16,7 @@ from .exception import SocialLoginException, GithubException
 
 def main(request):
   pets = Pet.objects.all()
-  return render(request, "main.html", {"pets": pets})
+  return render(request, "yogithon/main.html", {"pets": pets})
 
 def detail(request, pet_id):
     pet = get_object_or_404(Pet, pk = id)
