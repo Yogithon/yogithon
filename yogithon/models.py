@@ -10,6 +10,7 @@ class Pet(models.Model) :
     insta_url = models.URLField(max_length=200)
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    like = models.IntegerField(null=True)
 
     def __str__(self):
         return self.title
