@@ -16,7 +16,7 @@
         </div>
         </section>
         <section>
-            <form action="POST">
+            <form method="post">
                 {% csrf_token %} {{ form.as_p }}
                 <button type="submit">작성하기</button>
             </form>
