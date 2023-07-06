@@ -13,3 +13,14 @@ class PetForm(forms.ModelForm):
             'image',
             'insta_url'
         ]
+
+class UserForm(forms.ModelForm) :
+    class Meta :
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'user_id',
+            'user_pw',
+            'email'
+        ]
