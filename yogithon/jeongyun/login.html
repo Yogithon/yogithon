@@ -78,6 +78,12 @@
     <title>Document</title>
 </head>
 <body>
+    <style type="text/css">
+        a:link { color: red; text-decoration: none;}
+        a:visited { color: black; text-decoration: none;}
+        a:hover { color: black; text-decoration: none;}
+        a:active { color: black; text-decoration: none;}
+       </style>
 {% block content %}
 <div style="width: 1280px; height: 832px; position: relative; background: white">
     <div style="width: 505px; height: 513px; left: 387px; top: 159px; position: absolute; background: #FFC008; border-radius: 10px"></div>
@@ -86,9 +92,8 @@
     <div style="left: 471px; top: 168px; position: absolute; color: black; font-size: 30px; font-family: Inter; font-weight: 400; word-wrap: break-word">
         로그인
     </div>
-    <div style="left: 706px; top: 168px; position: absolute; color: #929090; font-size: 30px; font-family: Inter; font-weight: 400; word-wrap: break-word">
-        회원가입
-    </div>
+    
+    <div style="left: 706px; top: 158px; position: absolute; color: #929090; font-size: 30px; font-family: Inter; font-weight: 400; word-wrap: break-word"><a href="#"onclick="location.href='loginUser.html'">회원가입</a></div>
     <div style="width: 383px; height: 55px; left: 446px; top: 279px; position: absolute; background: white"></div>
     <div style="width: 383px; height: 55px; left: 446px; top: 361px; position: absolute; background: white"></div>
     <div style="left: 471px; top: 295px; position: absolute; color: #9D9999; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">
@@ -110,7 +115,7 @@
         로그인
 
     </div>
-
+ 
 
 </div>
 {% endblock %}
