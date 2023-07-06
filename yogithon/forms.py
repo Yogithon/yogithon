@@ -10,7 +10,7 @@ class PetForm(forms.ModelForm):
             'school',
             'author',
             'description',
-            'image',
+            # 'image',
             'insta_url'
         )
 

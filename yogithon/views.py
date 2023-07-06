@@ -41,7 +41,7 @@ def create(request):
         if form.is_valid():
             pet = form.save(commit=False)
             pet.save()
-            return redirect('detail', pk=pet.pk)
+            return redirect('yogithon:home')
     else :
         form = PetForm()
     return render(request, 'yogithon/create.html', {'form':form})
