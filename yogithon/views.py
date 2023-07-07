@@ -16,7 +16,8 @@ from .exception import SocialLoginException, GithubException
 
 def main(request):
   pets = Pet.objects.all()
-  return render(request, "yogithon/main.html", {"pets": pets})
+  list(pets)
+  return render(request, "yogithon/index.html", {"pets": pets})
 
 def detail(request, pk):
     pet = get_object_or_404(Pet, id=pk)
@@ -41,7 +42,7 @@ def create(request):
         if form.is_valid():
             pet = form.save(commit=False)
             pet.save()
-            return redirect('yogithon:home')
+            return redirect('index')
     else :
         form = PetForm()
     return render(request, 'yogithon/create.html', {'form':form})
@@ -76,6 +77,7 @@ def vote(request, pk):
         pet.save()
 
     return render(request, 'pet/p_detail.html', {'pet': pet})
+
 
 # 깃허브 로그인
 def github_login(request):
