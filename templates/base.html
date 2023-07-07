@@ -9,26 +9,25 @@
     <title>Petstagram</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="static/css/main.css"/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
     <noscript>
-        <link rel="stylesheet" href="static/css/noscript.css"/>
+        <link rel="stylesheet" href="{% static 'css/noscript.css' %}"/>
     </noscript>
+
 </head>
 <body class="is-preload">
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-md">
-    <a class="navbar-brand" href="/" style="left: 50px; top: 20px; font-size: xx-large; font-weight: bold; position: absolute;">Petstargram</a>
-  </div>
+    <div class="container-md">
+        <a class="navbar-brand" href="/"
+           style="left: 50px; top: 20px; font-size: xx-large; font-weight: bold; position: absolute;">Petstargram</a>
+    </div>
 </nav>
 <!-- Wrapper -->
 <div id="wrapper">
     <!-- Header -->
     <header id="header">
-        <div class="inner"><!-- Logo -->
-            <a href="{% url 'yogithon:create' %}" class="logo">
-                <span class="symbol"><img src="images/신짱구.PNG" alt=""/></span><span class="title">Add my pet</span>
-            </a>
-
+        <div class="inner">
             <!-- Nav -->
             <nav>
                 <ul>
@@ -44,10 +43,10 @@
         <h2>Menu</h2>
         <ul>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'accounts:logout' %}">로그아웃</a></li> <!--for문-->
+            <li><a href="{% url 'accounts:logout' %}">로그아웃</a></li>
             <li><a href="generic.html">마이 페이지</a></li>
             {% else %}
-            <li><a href="{% url 'accounts:login' %}">로그인</a></li> <!--for문-->
+            <li><a href="{% url 'accounts:login' %}">로그인</a></li>
             <li><a href="generic.html">음..</a></li>
             <li><a href="generic.html">또 머가 있더라</a></li>
             <li><a href="elements.html">설정</a></li>
@@ -58,13 +57,16 @@
     {% block content %}
     {% endblock %}
 
+</div>
 
-    <!-- Scripts -->
-    <script src="static/js/jquery.min.js"></script>
-    <script src="static/js/browser.min.js"></script>
-    <script src="static/js/breakpoints.min.js"></script>
-    <script src="static/js/util.js"></script>
-    <script src="static/js/main.js"></script>
+{% block script %}
+<!-- Scripts -->
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/browser.min.js"></script>
+<script src="static/js/breakpoints.min.js"></script>
+<script src="static/js/util.js"></script>
+<script src="static/js/main.js"></script>
+{% endblock %}
 
 </body>
 </html>

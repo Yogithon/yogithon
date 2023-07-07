@@ -57,7 +57,7 @@ def update(request, pk) :
             return redirect('p_list')
     else :
         form = PetForm(instance=list)
-    return render(request, 'pet/update.html', {'form':form})
+    return render(request, 'yogithon/update.html', {'form':form})
 
 def delete(request, pk) :
     pet = Pet.objects.get(id=pk)

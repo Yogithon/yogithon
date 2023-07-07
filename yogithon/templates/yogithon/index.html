@@ -8,13 +8,21 @@
 <div id="wrapper">
     <div id="main">
         <div class="inner">
+            <header id="header">
+                <div class="inner">
+                    <a href="{% url 'yogithon:create' %}" class="logo">
+                        <span class="symbol"><img src="images/신짱구.PNG" alt=""/></span><span
+                            class="title">Add my pet</span>
+                    </a>
+                </div>
+            </header>
             <section class="tiles">
                 {% for pet in pets %}
                 <article class="style1">
                 <span class="image" style="width:100%; height:413px;">
                     <img src="{{pet.image}}" alt="" style="width:100%"/>
                 </span>
-                    <a href="detail.html">
+                    <a href="{% url 'yogithon:detail' pk=pet.id %}">
                         <h2>{{pet.title}}</h2>
                         <div class="content">
                             <p>{{pet.description}}</p>
