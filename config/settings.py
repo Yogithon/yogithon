@@ -21,7 +21,6 @@ from pathlib import Path
 # 라스트팡
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -32,7 +31,6 @@ SECRET_KEY = 'django-insecure-n86sl#2x+hg3h(cas5d9&ovt)$5z6h!3s#0ydskn@-beymro@l
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -49,7 +47,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'accounts',
-    'sass_processor'
+    'sass_processor',
+    'widget_tweaks',
+    'modal_forms'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -92,7 +91,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -112,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -123,7 +120,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -147,3 +143,5 @@ SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 
 # 미디어 url
+MEDIA_ROOT = BASE_DIR
+MEDIA_URL = '/images/'

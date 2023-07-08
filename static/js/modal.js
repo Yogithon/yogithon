@@ -2,7 +2,7 @@ $('#create-data').submit((e) => {
     event.preventDefault()
 
     $.ajax({
-        url : '/create/',
+        url : '/',
         method:'POST',
         data : {
             csrfmiddlewaretoken : $('input#csrfmiddlewaretoken').val(),
@@ -16,7 +16,7 @@ $('#create-data').submit((e) => {
         dataType : "json",
         success(response){
             console.log(response)
-            window.location.href = '/create/'
+            window.location.href = '/'
         },
         error(response, status, error){
             console.log(response, status, error);
