@@ -12,52 +12,55 @@ import environ
 
 from .exception import SocialLoginException, GithubException
 
+
 # Create your views here.
-
+@csrf_exempt
 def main(request):
-  pets = Pet.objects.all()
-  list(pets)
+    pets = Pet.objects.all()
+    list(pets)
+    form = PetForm()
 
-  if request.method == "POST":
-      form = PetForm(request.POST)
-      if form.is_valid():
-          pet = form.save(commit=False)
-          pet.save()
-          return redirect('index')
-  else:
-      form = PetForm()
+    # if request.method == "POST":
+    #     form = PetForm(request.POST)
+    #     if form.is_valid():
+    #         pet = form.save(commit=False)
+    #         pet.save()
+    #         return redirect('/')
+    # else:
+    #     form = PetForm()
 
-  return render(request, "yogithon/index.html", {"pets": pets, "form":form})
+    return render(request, "yogithon/index.html", {"pets": pets, "form": form})
+
 
 def detail(request, pk):
     pet = get_object_or_404(Pet, id=pk)
-    return render(request, 'yogithon/detail.html', {"pet":pet})
+    return render(request, 'yogithon/detail.html', {"pet": pet})
 
-def new(request) :
-    return render (request,'create.html')
 
+def new(request):
+    return render(request, 'create.html')
+
+
+@csrf_exempt
 def create(request):
-    # new_pet = Pet()   # object 생성
-    # new_pet.title = request.POST['title']          # 필드 값 할당
-    # new_pet.p_name = request.POST['p_name']        # 필드 값 할당
-    # new_pet.school = request.POST['school']            # 필드 값 할당
-    # new_pet.author = request.POST['author']
-    # new_pet.description = request.POST['description']
-    # new_pet.image = request.POST['image']
-    # # pub_date는 장고에서 제공하는 모듈을 쓸 것임.
-    # new_pet.save()
+    pets = Pet.objects.all()
+    list(pets)
 
-    if request.method == "POST" :
+    if request.method == "POST":
         form = PetForm(request.POST)
+        print(request.POST)
+        print(request.path)
         if form.is_valid():
             pet = form.save(commit=False)
             pet.save()
-            return redirect('index')
-    else :
+            return redirect('create')
+    else:
         form = PetForm()
-    return render(request, 'yogithon/create.html', {'form':form})
 
-def update(request, pk) :
+    return render(request, "yogithon/index.html", {"pets": pets, "form": form})
+
+
+def update(request, pk):
     pet = Pet.objects.get(id=pk)
     if request.method == "POST":
         form = PetForm(request.POST, instance=pet)
@@ -65,16 +68,18 @@ def update(request, pk) :
             pet = form.save(commit=False)
             pet.save()
             return redirect('p_list')
-    else :
+    else:
         form = PetForm(instance=pet)
-    return render(request, 'yogithon/update.html', {'form':form})
+    return render(request, 'yogithon/update.html', {'form': form})
 
-def delete(request, pk) :
+
+def delete(request, pk):
     pet = Pet.objects.get(id=pk)
-    if request.method == "POST" :
+    if request.method == "POST":
         pet.delete()
         return redirect('p_list')
-    return render(request, 'pet/delete.html', {'pet':pet})
+    return render(request, 'yogithon/delete.html', {'pet': pet})
+
 
 @csrf_exempt
 def vote(request, pk):
@@ -97,12 +102,13 @@ def github_login(request):
         client_id = os.environ.get("GITHUB_CLIENT_ID")
         redirect_uri = "http://127.0.0.1:8000/users/login/github/callback/"
         scope = "read:user"
-        return redirect (
+        return redirect(
             f"https://github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&scope={scope}"
         )
     except SocialLoginException as error:
         messages.error(request, error)
         return redirect("core:home")
+
 
 def github_login_callback(request):
     try:
