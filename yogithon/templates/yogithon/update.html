@@ -31,14 +31,14 @@
             <div style="width: 143px; height: 28px; left: 68px; top: 35px; position: absolute; color: black; font-size: 24px; font-family: IBM Plex Sans KR; font-weight: 700; word-wrap: break-word">학교 게시판</div>
             <div style="width: 116px; height: 31px; left: 299px; top: 35px; position: absolute; color: black; font-size: 24px; font-family: IBM Plex Sans KR; font-weight: 700; word-wrap: break-word">마이페이지 </div>
         </div>
-        <form action="{% url 'update' pk=pet.id %}" method="post">
+        <form method="post">
             {%csrf_token%}
             <p>제목 : <input type="text" name="title" value={{pet.title}} /></p>
             <p>반려동물 이름 : <input type="text" name="p_name" value="{{pet.p_name}}" /></p>
             <p>학교동물 이름 : <input type="text" name="school" value="{{pet.school}}" /></p>
             <p>글쓴이 : <input type="text" name="author" value="{{pet.author}}" /></p>
             <p>설명 : <input type="text" name="description" value="{{pet.description}}" /></p>
-            <button type="submit" class="btn btn-primary"><a href="{% url 'update' %}"></a>수정하기</button>
+            <button type="submit" class="btn btn-primary">수정하기</button>
         </form>
     </div>
 </body>

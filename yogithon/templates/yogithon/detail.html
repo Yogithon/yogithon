@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ pet.p_name }} {% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+    <button style="position:absolute; right:150px;"><a href="{% url 'yogithon:update' pk=pet.id %}">수정하기</a></button>
+    <section>
+        <div class="inner">
+            <h1 style="font-size:50px;">{{ pet.title }}</h1>
+            <span class="image main" style="height:850px; display:flex; flex-direction:row;">
+                <div>
+                    <!-- 혹시 이미지를 왜 10px로 주었는지 물어봐도 되나요 -->
+                    <img src="{{ pet.image.url }}" width="10px">
+                </div>
+                <!-- 이거 p 태그 내용들 사진 옆으로 가면 좋을 것 같은데 태그를 공부해오겠습니다.-->
+                <div>
+                    <p>{{ pet.p_name }}</p>
+                    <p>{{ pet.school }}</p>
+                    <p>{{ pet.author }}</p>
+                    <p>{{ pet.description }}</p>
+                </div>
+            </span>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
+
