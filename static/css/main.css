@@ -3326,3 +3326,72 @@ input, select, textarea {
 			}
 
 		}
+
+/* modal */
+
+        .contact-form{
+          display: flex;
+        }
+
+        .input-fields{
+          display: flex;
+          flex-direction: column;
+          margin-right: 4%;
+        }
+
+        .input-fields,
+        .msg{
+          width: 48%;
+        }
+
+        .input-fields .input,
+        .msg textarea{
+          margin: 10px 0;
+          background: transparent;
+          border: 0px;
+          border-bottom: 1px solid #f2849e;
+          padding: 10px;
+          color: #f2849e;
+          width: 100%;
+        }
+
+        .msg textarea{
+          height: 480px; !important
+        }
+
+        ::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: #f2849e;
+        }
+        ::-moz-placeholder {
+          /* Firefox 19+ */
+          color: #f2849e;
+        }
+        :-ms-input-placeholder {
+          /* IE 10+ */
+          color: #f2849e;
+        }
+
+        .btn {
+            background: #f2849e;
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        /*
+        @media screen and (max-width: 600px){
+          .contact-form{
+            flex-direction: column;
+          }
+          .msg textarea{
+            height: 80px;
+          }
+          .input-fields,
+          .msg{
+            width: 100%;
+          }
+        }
+        */

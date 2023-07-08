@@ -17,7 +17,17 @@ from .exception import SocialLoginException, GithubException
 def main(request):
   pets = Pet.objects.all()
   list(pets)
-  return render(request, "yogithon/index.html", {"pets": pets})
+
+  if request.method == "POST":
+      form = PetForm(request.POST)
+      if form.is_valid():
+          pet = form.save(commit=False)
+          pet.save()
+          return redirect('index')
+  else:
+      form = PetForm()
+
+  return render(request, "yogithon/index.html", {"pets": pets, "form":form})
 
 def detail(request, pk):
     pet = get_object_or_404(Pet, id=pk)
@@ -56,7 +66,7 @@ def update(request, pk) :
             pet.save()
             return redirect('p_list')
     else :
-        form = PetForm(instance=list)
+        form = PetForm(instance=pet)
     return render(request, 'yogithon/update.html', {'form':form})
 
 def delete(request, pk) :
