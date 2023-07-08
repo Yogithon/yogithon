@@ -9,17 +9,17 @@
         <div class="inner">
             <header id="header">
                 <div class="inner">
-                    <a href="#jsModal"  type="button" class="logo jsModalTrigger" id="popup">
-                        <span class="symbol"><img src="images/신짱구.PNG" alt=""/></span>
+                    <button class="logo" id="btn-modal" style="box-shadow:none;">
+                        <span class="symbol"><img src="images/Images/신짱구.jpg" alt=""/></span>
                         <span class="title" >Add my pet</span>
-                    </a>
+                    </button>
                 </div>
             </header>
             <section class="tiles">
                 {% for pet in pets %}
                 <article class="style1">
                 <span class="image" style="width:100%; height:413px;">
-                    <img src="{{pet.image}}" alt="" style="width:100%"/>
+                    <img src="{{pet.image.url}}" alt="" style="width:100%"/>
                 </span>
                     <a href="{% url 'yogithon:detail' pk=pet.id %}">
                         <h2>{{pet.title}}</h2>
@@ -35,86 +35,78 @@
     </div>
 </div>
 
-<div id="jsModal" class="modal">
-  <div class="modal__overlay jsOverlay"></div>
-  <div class="modal__container">
-      <p style="color: #f2849e;">새로운 글 작성하기</p>
-      <button class="modal__close jsModalClose" style="border:none; outline:none;">&#10005;</button>
-      <form id="create-data" method="post" style="display:flex; ">
-            {% csrf_token %}
-            <div class="input-fields">
-                {{ form.title }}
-                {{ form.p_name }}
-                {{ form.school }}
-                {{ form.author }}
-                {{ form.image }}
-                {{ form.insta_url }}
-            </div>
-            <div class="msg">
-                {{ form.description }}
-                <button type="submit" class="btn" style="width:350px; padding:10px">작성하기</button>
-            </div>
-      </form>
-  </div>
+<div id="modal" class="modal-overlay" style="z-index:21;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(225, 225, 225, 0.25);">
+    <div class="modal-window">
+        <div class="title">
+            <h2>새로운 글 작성하기</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+            <form id="create-data" method="post" style="display:flex;">
+                {% csrf_token %}
+                <div class="input-fields">
+                    {{ form.title }}
+                    {{ form.p_name }}
+                    {{ form.school }}
+                    {{ form.author }}
+                    {{ form.image }}
+                    {{ form.insta_url }}
+                </div>
+                <div class="msg">
+                    {{ form.description }}
+                    <button type="submit" class="btn" style="width:350px; padding:10px">작성하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>
-    /* This script supports IE9+ */
-    (function() {
-      /* Opening modal window function */
-      function openModal() {
-          /* Get trigger element */
-          var modalTrigger = document.getElementsByClassName('jsModalTrigger');
 
-          /* Set onclick event handler for all trigger elements */
-          for(var i = 0; i < modalTrigger.length; i++) {
-              modalTrigger[i].onclick = function() {
-                var target = this.getAttribute('href').substr(1);
-                var modalWindow = document.getElementById(target);
-
-                modalWindow.classList ? modalWindow.classList.add('open') : modalWindow.className += ' ' + 'open';
-              }
-          }
-      }
-
-      function closeModal(){
-        /* Get close button */
-        var closeButton = document.getElementsByClassName('jsModalClose');
-        var closeOverlay = document.getElementsByClassName('jsOverlay');
-
-        /* Set onclick event handler for close buttons */
-          for(var i = 0; i < closeButton.length; i++) {
-            closeButton[i].onclick = function() {
-              var modalWindow = this.parentNode.parentNode;
-
-              modalWindow.classList ? modalWindow.classList.remove('open') : modalWindow.className = modalWindow.className.replace(new RegExp('(^|\\b)' + 'open'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-            }
-          }
-
-        /* Set onclick event handler for modal overlay */
-          for(var i = 0; i < closeOverlay.length; i++) {
-            closeOverlay[i].onclick = function() {
-              var modalWindow = this.parentNode;
-
-              modalWindow.classList ? modalWindow.classList.remove('open') : modalWindow.className = modalWindow.className.replace(new RegExp('(^|\\b)' + 'open'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-            }
-          }
-
-      }
-
-      /* Handling domready event IE9+ */
-      function ready(fn) {
-        if (document.readyState != 'loading'){
-          fn();
-        } else {
-          document.addEventListener('DOMContentLoaded', fn);
+    const modal = document.getElementById("modal")
+    function modalOn() {
+        modal.style.display = "flex"
+    }
+    function isModalOn() {
+        return modal.style.display === "flex"
+    }
+    function modalOff() {
+        modal.style.display = "none"
+    }
+    const btnModal = document.getElementById("btn-modal")
+    btnModal.addEventListener("click", e => {
+        modalOn()
+    })
+    const closeBtn = modal.querySelector(".close-area")
+    closeBtn.addEventListener("click", e => {
+        modalOff()
+    })
+    modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if(evTarget.classList.contains("modal-overlay")) {
+            modalOff()
         }
-      }
-
-      /* Triggering modal window function after dom ready */
-      ready(openModal);
-      ready(closeModal);
-    }());
+    })
+    window.addEventListener("keyup", e => {
+        if(isModalOn() && e.key === "Escape") {
+            modalOff()
+        }
+    })
 </script>
 
 </body>

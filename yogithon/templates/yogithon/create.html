@@ -1,28 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create</title>
-</head>
+{% extends 'base.html' %}
+
+{% block content %}
 <body>
-    <div class="MacbookAir" style="width: 1280px; height: 832px; position: relative; background: white">
-        <section style="height:150px;">
-        <div class="Group1" style="width: 1280px; height: 105px; left: 0px; top: 0px; position: absolute">
-          <div class="Rectangle1" style="width: 1280px; height: 105px; left: 0px; top: 0px; position: absolute; background: #FFECB3"></div>
-          <div style="left: 989px; top: 32px; position: absolute; color: #E65200; font-size: 36px; font-family: ChangwonDangamAsac; font-weight: 700; word-wrap: break-word">Petstagram</div>
-          <div style="width: 143px; height: 28px; left: 68px; top: 35px; position: absolute; color: black; font-size: 24px; font-family: IBM Plex Sans KR; font-weight: 700; word-wrap: break-word">학교 게시판</div>
-          <div style="width: 116px; height: 31px; left: 299px; top: 35px; position: absolute; color: black; font-size: 24px; font-family: IBM Plex Sans KR; font-weight: 700; word-wrap: break-word">마이페이지 </div>
-        </div>
-        </section>
-        <section>
-            <form method="post">
-                {% csrf_token %} {{ form.as_p }}
-                <button type="submit">작성하기</button>
-            </form>
-        </section>
+    <div class="title">
+        <h2>새로운 글 작성하기</h2>
     </div>
+    <div class="close-area">X</div>
+    <div class="content">
+        <form id="create-data" method="post" style="display:flex;" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="input-fields">
+                <input
+                    type="{{ field.field.widget.input_type }}"
+                    class="form-control"
+                    id="{{ field.id_for_label }}"
+                    placeholder="{{ field.name }}"
+                    name="{{ field.name }}"
+                />
 
+            </div>
+            {% if field.errors %}
+                <span style="color: red">{{ form.errors }} </span>
+            {% endif %}
+            {% endfor %}
+            <button type="submit" class="btn" style="width:350px; padding:10px">작성하기</button>
+        </form>
+    </div>
+</body>
 
-
-
+{% endblock %}

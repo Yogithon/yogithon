@@ -20,15 +20,6 @@ def main(request):
     list(pets)
     form = PetForm()
 
-    # if request.method == "POST":
-    #     form = PetForm(request.POST)
-    #     if form.is_valid():
-    #         pet = form.save(commit=False)
-    #         pet.save()
-    #         return redirect('/')
-    # else:
-    #     form = PetForm()
-
     return render(request, "yogithon/index.html", {"pets": pets, "form": form})
 
 
@@ -40,24 +31,20 @@ def detail(request, pk):
 def new(request):
     return render(request, 'create.html')
 
-
-@csrf_exempt
 def create(request):
-    pets = Pet.objects.all()
-    list(pets)
 
     if request.method == "POST":
-        form = PetForm(request.POST)
+        form = PetForm(request.POST, request.FILES)
         print(request.POST)
-        print(request.path)
+        print(form.is_valid())
         if form.is_valid():
             pet = form.save(commit=False)
             pet.save()
-            return redirect('create')
+            return redirect('yogithon:home')
     else:
         form = PetForm()
 
-    return render(request, "yogithon/index.html", {"pets": pets, "form": form})
+    return render(request, "yogithon/create.html", {"form": form})
 
 
 def update(request, pk):

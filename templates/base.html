@@ -15,8 +15,6 @@
     <noscript>
         <link rel="stylesheet" href="{% static 'css/noscript.css' %}"/>
     </noscript>
-    {% load sass_tags %}
-    <link href="{% sass_src 'css/modal.scss' %}" rel="stylesheet" type="text/css" />
 
 </head>
 <body class="is-preload">
@@ -70,6 +68,7 @@
 <script src="static/js/util.js"></script>
 <script src="static/js/main.js"></script>
 <script src="static/js/modal.js"></script>
+<script src="https://unpkg.com/htmx.org@1.8.6"></script>
 
 {% endblock %}
 
