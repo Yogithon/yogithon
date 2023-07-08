@@ -37,14 +37,14 @@ class PetForm(ModelForm):
             'description': Textarea(attrs={
                 'class': "input",
                 'style':"overflow: hidden; resize: none; height: 396px;",
-                'placeholder': 'description'
+                'placeholder': 'description',
             }),
             'image': FileInput(attrs={
                 'class': "input",
                 'style': "width:300px",
                 'placeholder': 'image'
             }),
-            'insta_url': EmailInput(attrs={
+            'insta_url': TextInput(attrs={
                 'class': "input",
                 'style': "width:300px",
                 'placeholder': 'insta_url'

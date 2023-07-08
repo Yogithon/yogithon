@@ -40,7 +40,7 @@
   <div class="modal__container">
       <p style="color: #f2849e;">새로운 글 작성하기</p>
       <button class="modal__close jsModalClose" style="border:none; outline:none;">&#10005;</button>
-      <form method="post" style="display:flex; ">
+      <form id="create-data" method="post" style="display:flex; ">
             {% csrf_token %}
             <div class="input-fields">
                 {{ form.title }}
